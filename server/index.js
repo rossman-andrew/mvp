@@ -1,19 +1,20 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var db = require('../database');
 
 var app = express();
 
-app.get('/', function(req, res) {
-	res.send('Got your request!');
-})
+app.use(express.static(__dirname + '/../client/dist'));
 
-
-
-
-
-
-
-
+app.get('/toDos', function(req, res) {
+	db.selectAll(function(err, data) {
+		if (err) {
+			res.sendStatus(500);
+		} else {
+			res.json(data);
+		}
+	});
+});
 
 
 
