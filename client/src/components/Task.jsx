@@ -1,11 +1,24 @@
 import React from 'react';
 
-const Task = (props) => (
-	<div>
-		<h3> Do Time Item: {props.individualTaskProp.toDo} </h3>
-		<h5> Predicted Time: {props.individualTaskProp.predictedTime} </h5>
-		<h5> Actual Time: {props.individualTaskProp.actualTime} </h5>
-	</div>
-)
+class Task extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	setStartTime() {
+		let startTime = Date.now();
+	}
+
+	render() {
+		return (
+			<div onClick={this.setStartTime.bind(this)}>
+				<h4> Do Time Item: {this.props.individualTaskProp.toDo} </h4>
+				<p>Predicted Time: {this.props.individualTaskProp.predictedTime} Actual Time: {this.props.individualTaskProp.actualTime}</p>
+				<br />
+			</div>
+		)
+	} 
+	
+}
 
 export default Task;

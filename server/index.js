@@ -5,6 +5,7 @@ var db = require('../database');
 var app = express();
 
 app.use(express.static(__dirname + '/../client/dist'));
+app.use(bodyParser.json());
 
 app.get('/toDos', function(req, res) {
 	db.selectAll(function(err, data) {
@@ -15,6 +16,11 @@ app.get('/toDos', function(req, res) {
 		}
 	});
 });
+
+app.post('/toDos', function(req, res) {
+	db.addToDoItem(req.body.toDo, req.body.predictedTime);
+	res.sendStatus(201);
+})
 
 
 

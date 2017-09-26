@@ -14,34 +14,37 @@ db.once('open', function() {
 		user: String,
 		toDo: String,
 		predictedTime: Number,
+		startTime: Number,
 		actualTime: Number
 	});
 
 	var doTimeItem = mongoose.model('doTimeItem', doTime);
 
-	// var item1 = new doTimeItem({toDo: 'Make an app', predictedTime: 1000, actualTime: 1300});
-	// var item2 = new doTimeItem({toDo: 'Get sleep', predictedTime: 800, actualTime: 400});
-	// var item3 = new doTimeItem({toDo: 'Eat dinner', predictedTime: 60, actualTime: 60});
+/*
+	var item1 = new doTimeItem({toDo: 'Make an app', predictedTime: 1000, actualTime: 1300});
+	var item2 = new doTimeItem({toDo: 'Get sleep', predictedTime: 800, actualTime: 400});
+	var item3 = new doTimeItem({toDo: 'Eat dinner', predictedTime: 60, actualTime: 60});
 
-	// item1.save(function(err, item1) {
-	// 	if(err) {
-	// 		console.log("Error saving item1");
-	// 	} else {
-	// 		console.log("Item1 saved", item1);
-	// 	}
-	// });
+	item1.save(function(err, item1) {
+		if(err) {
+			console.log("Error saving item1");
+		} else {
+			console.log("Item1 saved", item1);
+		}
+	});
 
-	// item2.save(function(err, item3) {
-	// 	if(err) {
-	// 		console.log("Error saving item1");
-	// 	}
-	// });
+	item2.save(function(err, item3) {
+		if(err) {
+			console.log("Error saving item1");
+		}
+	});
 
-	// item3.save(function(err, item3) {
-	// 	if(err) {
-	// 		console.log("Error saving item1");
-	// 	}
-	// });
+	item3.save(function(err, item3) {
+		if(err) {
+			console.log("Error saving item1");
+		}
+	});
+*/
 
 	var selectAll = function(callback) {
 		doTimeItem.find({}, function(err, items) {
@@ -52,7 +55,20 @@ db.once('open', function() {
 			}
 		});
 	}
+
+	var addToDoItem = function(toDo, predictedTime) {
+		let newItem = new doTimeItem({toDo, predictedTime});
+		newItem.save(function(err, newItem) {
+			if (err) {
+				console.log('Error saving item in database');
+			} else {
+				console.log('Saved item in database');
+			}
+		});
+	}
+
 	module.exports.selectAll = selectAll; 
+	module.exports.addToDoItem = addToDoItem;
 });
 
 
