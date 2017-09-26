@@ -18,8 +18,13 @@ app.get('/toDos', function(req, res) {
 });
 
 app.post('/toDos', function(req, res) {
-	db.addToDoItem(req.body.toDo, req.body.predictedTime);
-	res.sendStatus(201);
+	if(req.body.startTime) {
+		db.setStartTime(req.body.toDo, req.body.startTime);
+		res.sendStatus(201);
+	} else {
+		db.addToDoItem(req.body.toDo, req.body.predictedTime);
+		res.sendStatus(201);
+	}
 })
 
 

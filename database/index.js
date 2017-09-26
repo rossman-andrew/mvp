@@ -67,8 +67,13 @@ db.once('open', function() {
 		});
 	}
 
+	var setStartTime = function(toDo, startTime) {
+		doTimeItem.findOneAndUpdate({toDo}, {startTime});
+	}
+
 	module.exports.selectAll = selectAll; 
 	module.exports.addToDoItem = addToDoItem;
+	module.exports.setStartTime = setStartTime;
 });
 
 
