@@ -32,6 +32,7 @@ class AddTask extends React.Component {
       	<h2>Enter a new Do-Time task:</h2>
         Do-Time Task: <input type="text" value={this.state.toDo} onChange={this.changeToDo.bind(this)} />
         <br />
+        <br />
         Predicted Time: <input type="number" value={this.state.predictedTime} onChange={this.changePredictedTime.bind(this)} />
         <br />
         <button onClick={this.postDoTimeItem.bind(this)}>Add Do-Time Item</button>

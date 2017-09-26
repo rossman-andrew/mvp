@@ -14,7 +14,8 @@ db.once('open', function() {
 		user: String,
 		toDo: String,
 		predictedTime: Number,
-		startTime: Number,
+		startTime: String,
+		stopTime: String,
 		actualTime: Number
 	});
 
@@ -68,12 +69,31 @@ db.once('open', function() {
 	}
 
 	var setStartTime = function(toDo, startTime) {
-		doTimeItem.findOneAndUpdate({toDo}, {startTime});
+		// var retVal = doTimeItem.findOneAndUpdate(
+		// 	{"toDo": "Second Task"}, 
+		// 	{$set: {"startTime": "Right Now"}}
+		// );
+		// console.log("setStartTime ran with this toDo:", toDo, "this startTime", startTime);
+		// console.log("FOAU returned", retVal);
+		doTimeItem.update({"toDo": toDo}, {"startTime": startTime}, function(err, numAffected) {
+			console.log("Error:", err, "Number of documents affected", numAffected);
+		});
+	}
+
+	var setStopTime = function(toDo, stopTime, actualTime) {
+		// doTimeItem.findOneAndUpdate(
+		// 	{"toDo": toDo}, 
+		// 	{$set: {"stopTime": stopTime, "actualTime": actualTime}}
+		// );
+		doTimeItem.update({"toDo": toDo}, {"stopTime": stopTime, "actualTime": actualTime}, function(err, numAffected) {
+			console.log("Error:", err, "Number of documents affected", numAffected);
+		});
 	}
 
 	module.exports.selectAll = selectAll; 
 	module.exports.addToDoItem = addToDoItem;
 	module.exports.setStartTime = setStartTime;
+	module.exports.setStopTime = setStopTime;
 });
 
 

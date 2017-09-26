@@ -21,6 +21,9 @@ app.post('/toDos', function(req, res) {
 	if(req.body.startTime) {
 		db.setStartTime(req.body.toDo, req.body.startTime);
 		res.sendStatus(201);
+	} else if (req.body.stopTime) {
+		db.setStopTime(req.body.toDo, req.body.stopTime, req.body.actualTime);
+		res.sendStatus(201);
 	} else {
 		db.addToDoItem(req.body.toDo, req.body.predictedTime);
 		res.sendStatus(201);
