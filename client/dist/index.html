@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Item List</title>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="174899823142-33vq66ofnuf1cul9aki74ouu39mgvu4l.apps.googleusercontent.com">
+</head>
+<body>
+<!-- Google Client API 174899823142-33vq66ofnuf1cul9aki74ouu39mgvu4l.apps.googleusercontent.com -->
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<br />
+<button onclick="signOut();">Sign Out</button><!-- <a href="#" onclick="signOut();">Sign out</a>  -->
+<script>
+	function onSignIn() {
+		console.log("User successfully signed in");
+		var x = document.getElementById('app');    
+    x.style.display = 'block';
+	}
+
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+      var x = document.getElementById('app');
+      x.style.display = 'none';
+    });
+  }
+</script>
+<div style="display: none;" id="app"></div>
+<script type="text/javascript" src="bundle.js"></script>
+</body>
+</html>
